@@ -61,8 +61,3 @@ try:
     file_output.close()
 except Exception as error:
     print(f'ERRO.... \033[91m{sys.exc_info()[0]}\033[0m')
-#------------------------------------------------------------------------------------------SUGESTÕES DE URLS DE IMAGENS------------------------------------------------------------------------------------------
-#https://httpbin.org/image/png
-#https://s2-g1.glbimg.com/wpRaLHmy-XmwDArMLmfn2UelIeE=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/8/X/15hbVnQlGAOdDXzBAG9Q/kanye-presidente.jpg
-#https://s2-g1.glbimg.com/0LRPk7_alpjSxg2d115dYCrU_pE=/0x0:2000x1336/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/o/a/AKU9eiS62UlUR0Cl07PA/kendrick-lamar-2019-04-07-dsc03029-fabio-tito-g1.jpg
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
