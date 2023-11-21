@@ -12,6 +12,5 @@ O repositório está organizado da seguinte forma:
 - **EstudosDirigidos:** Conteúdo relacionado aos estudos dirigidos.
 
 ## Observações
-- Os arquivos e informações sobre projetos estão em outro repositório.
 - Sinta-se à vontade para utilizar os códigos como inspiração ou para aprendizado.
 - Por favor, NÃO PLAGIE.
