@@ -10,7 +10,8 @@ O repositório está organizado da seguinte forma:
 
 - **Atividades:** Pasta destinada às atividades práticas da disciplina.
 - **EstudosDirigidos:** Conteúdo relacionado aos estudos dirigidos.
--  **Projeto:** 
+- **Projeto:** Pasta destinada ao Projeto da disciplina
+
 ## Observações
 - Sinta-se à vontade para utilizar os códigos como inspiração ou para aprendizado.
 - Por favor, NÃO PLAGIE.
