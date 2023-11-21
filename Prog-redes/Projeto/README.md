@@ -70,7 +70,8 @@ Este projeto implementa uma aplicação cliente/servidor
 ## Tipos de Sockets 
 
 - **Tipo de Socket:**
-  - Utiliza socket TCP no servidor para garantir controle de transmissão.
+  - Utiliza socket TCP no servidor para garantir controle de transmissão seguro e confiável.
+  - O programa irá aceitar até 6 maquinas simultaneamente.
 
 ---
 
