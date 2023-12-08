@@ -48,23 +48,23 @@ Este projeto implementa uma aplicação cliente/servidor
    - Implementação de comandos via bot no Telegram para:
      - Informações do hardware onde o servidor está sendo executado.
        ```
-       ====================== /info-h =======================
+       ====================== /infoH ========================
        ```
      - Lista de programas instalados no servidor.
        ```
-       ====================== /info-p =======================
+       ====================== /infoP ========================
        ```
      - Histórico de navegação em diferentes navegadores.
        ```
-       ====================== /historic ======================
+       ====================== /historic =====================
        ```
      - Informações detalhadas do usuário logado.
        ```
-       ====================== /info-u =======================
+       ====================== /infoU ========================
        ```
      - Lista dos agentes online com informações básicas.
        ```
-       ====================== /listclient =====================
+       ====================== /listclient ====================
        ```
 
 ## Tipos de Sockets 
