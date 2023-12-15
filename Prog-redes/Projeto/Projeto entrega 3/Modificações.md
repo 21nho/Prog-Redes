@@ -11,5 +11,7 @@ de `if` e `elif` e adicionando uma lógica de dicionário. Foram implementados t
 executadas durante as interações com o usuário.
 
 ## Observações, Resoluções Futuras, Recomendações, etc.
-Durante o funcionamento do código, percebeu-se um problema relacionado à dificuldade de encerrá-lo, exigindo o fechamento do terminal. Para resolver isso, 
+- Durante o funcionamento do código, percebeu-se um problema relacionado à dificuldade de encerrá-lo, exigindo o fechamento do terminal. Para resolver isso, 
 pretende-se liberar o terminal e implementar uma maneira de encerrar o programa por meio de um comando no terminal.
+
+- Ao tentar mover os códigos para outra pasta, percebi que os commits anteriores são excluídos. Essa é a razão para a criação deste arquivo complementar.
