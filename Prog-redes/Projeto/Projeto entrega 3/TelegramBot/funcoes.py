@@ -77,4 +77,4 @@ mensagem_inicial = (
     "/infoU - Informações do usuário logado\n"
     "/historic - Histórico de navegação\n"
     "/listclient - Lista de agentes online com informações básicas\n" 
-)
+    )
