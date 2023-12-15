@@ -6,3 +6,5 @@ while True:
     resultado = requests.get(strURL)
     print(resultado.json())
     time.sleep(10)
+
+#Programa para entender a lógica do request no BOT
