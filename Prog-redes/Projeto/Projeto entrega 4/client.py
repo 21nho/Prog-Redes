@@ -2,7 +2,7 @@ import threading
 import socket
 SERVER = 'localhost'
 PORT = 5678
-
+PROMPT = 'Insira sua msg > '
 
 def main():
 
@@ -13,8 +13,8 @@ def main():
     except:
         return print('\nNão foi possívvel se conectar ao servidor!\n')
 
-    username = input('Usuário> ')
-    print('\nConectado')
+    print('Conectado \n')
+    username = input('Insira um nome de usuário>')
 
     recebendo = threading.Thread(target=recebMensagens, args=[client])
     mandando = threading.Thread(target=mandMensages, args=[client, username])
@@ -30,10 +30,9 @@ def recebMensagens(client):
     while True:
         try:
             msg = client.recv(512).decode('utf-8')
-            print(msg+'\n')
+            print("\n"+msg+"\n"+PROMPT)
         except:
             print('\nNão foi possível permanecer conectado no servidor!\n')
-            print('Pressione <Enter> Para continuar...')
             client.close()
             break
             
@@ -41,10 +40,9 @@ def recebMensagens(client):
 def mandMensages(client, username):
     while True:
         try:
-            msg = input('\n')
+            msg = input(PROMPT)
             client.send(f'<{username}> {msg}'.encode('utf-8'))
         except:
             return
-
 
 main()
