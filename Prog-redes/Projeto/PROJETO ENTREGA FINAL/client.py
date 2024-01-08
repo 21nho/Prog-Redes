@@ -1,7 +1,14 @@
-import threading
+import threading, platform, subprocess
 import socket, os, time
+from LinuxFun import *
+from funcoeswin import *
+from browser_history.browsers import Chrome, Edge, Firefox
+import os, sqlite3
+
+
 SERVER = 'localhost'
 PORT = 5678
+SO = platform.system()
 
 def main():
 
@@ -9,6 +16,7 @@ def main():
 
     try:
         client.connect((SERVER, PORT))
+        
         print("Conectado")
         USERNAME = input('Insira o nome de usuário:')
         HOST    = socket.gethostname()
@@ -16,6 +24,8 @@ def main():
         LOGIN = os.getlogin()
         infos = (f'{HOST}, {IP}, {LOGIN}, {USERNAME}')
         infoh = infos.encode('utf-8')
+
+        
 
         try:
             client.send(infoh)
@@ -33,19 +43,24 @@ def main():
                 print('\nNão foi possível permanecer conectado no servidor!\n')
                 client.close()
                 return
-            print(msg)
-            funçao = criar_resposta(msg)
-            print(funçao)
+            try:
+                funçao = criar_respostaW(msg)
+            except: 
+                funçao = criar_respostaL(msg)
+            finally: print('deu n')
+
             client.send(f'{funçao}'.encode('utf-8'))
         except socket.timeout:
             print('\nNão foi possível receber dados do servidor.\n')
 
+
+
            
-def criar_resposta(comando):
+def criar_respostaW(comando):
     dictopcoes = {
-    '/infoH': informacoes_hardware(),
-    '/infoP'   : lista_programas_instalados(),              '/infoU': informacoes_usuario_logado(),
-    '/historic': historico_navegacao(),                '/listclient': lista_agentes_online(), }
+    '/infoH': informacoes_hardwareW(),
+    '/infoP'   : lista_programas_instaladosW(),              '/infoU': informacoes_usuario_logadoW(),
+    '/historic': historico_navegacaoW(),                '/listclient': lista_agentes_onlineW(), }
 
     try:
         return dictopcoes[comando]
@@ -53,20 +68,71 @@ def criar_resposta(comando):
         return 'comando invalido'
 
 
-def informacoes_hardware():
-    return "Informações do hardware onde o servidor está sendo executado."
+def criar_respostaL(comando):
+    dictopcoes = {
+    '/infoH': informacoes_hardwareL(),
+    '/infoP'   : lista_programas_instaladosL(),              '/infoU': informacoes_usuario_logadoL(),
+    '/historic': historico_navegacaoL(),                '/listclient': lista_agentes_onlineL(), }
 
-def lista_programas_instalados():
-    return "Lista de programas instalados no servidor."
+    try:
+        return dictopcoes[comando]
+    except: 
+        return 'comando invalido'
 
-def historico_navegacao():
+
+# LINUX
+
+def informacoes_hardwareL():
+    informacoes = infohardwareL()
+    return informacoes 
+
+def lista_programas_instaladosL():
+    informacoes = proglinux()
+    return informacoes
+
+def historico_navegacaoL(navegador):
     return "Histórico de navegação em diferentes navegadores."
 
-def informacoes_usuario_logado():
-    return "Informações detalhadas do usuário logado."
+def informacoes_usuario_logadoL():
+    informacoes = ipagentes()
+    return informacoes
 
-def lista_agentes_online():
+def lista_agentes_onlineL():
     return "Lista dos agentes online com informações básicas."
+
+
+# WINDOWS
+def informacoes_hardwareW():
+    return infohardwareW()
+
+def lista_programas_instaladosW():
+    return progwindows()
+
+def historico_navegacaoW():
+    return 'historicos de navegação'
+
+def informacoes_usuario_logadoW():
+    return ipagentes()
+
+def lista_agentes_onlineW():
+    return "Lista dos agentes online com informações básicas."
+
+
+
+def ipagentes():
+    try:
+        informacoes_agente = f'''
+        ---- INFORMAÇÕES DO AGENTE ----
+
+        Nome do host: {socket.gethostname()}
+        Usuário logado: {os.getlogin()}
+        IP do Host: {socket.gethostbyname(socket.gethostname())}
+        '''
+        return informacoes_agente
+    except:
+        return 'Não foi possível obter as informações do Agente'
+
+
 
 
 
